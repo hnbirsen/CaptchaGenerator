@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <form method="post">
+        <div class="row">
+            <div class="col-sm">
+                <img id="img-captcha" src="~/getcaptchaimage" />
+                <a href="#" id="btn-refresh">Refresh</a>
+            </div>
+            <div class="col-sm">
+                <input type="text" name="captchaCode" oninput="this.value = this.value.toUpperCase()" maxlength="4" required />
+            </div>
+            <div class="col-sm">
+                <button type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>$("#btn-refresh").click(function () {
+            resetCaptchaImage();
+        });
+
+        function resetCaptchaImage() {
+            var d = new Date();
+            $("#img-captcha").attr("src", "/getcaptchaimage?" + d.getTime());
+        };</script>
+}
